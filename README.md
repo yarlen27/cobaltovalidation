@@ -31,8 +31,10 @@ class UserValidator extends AbstractValidator<User> {
 const user = new User('John', 17);
 const validator = new UserValidator();
 let result = validator.Validate(user);
+console.log(result.isValid);
+console.log(result.getErrors());
 ```
-Returns the list of errors.
+Returns the validationResult
 
 Also can use ValidateAndThrow
 ```typescript
