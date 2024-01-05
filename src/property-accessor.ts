@@ -1,0 +1,1 @@
+export type PropertyAccessor<T> = (obj: T) => any;
