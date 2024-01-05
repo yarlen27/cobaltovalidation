@@ -1,5 +1,5 @@
 Simple fluent validation like library.
-A validation library for typescript that allow building strongly-typed validation rules.
+A validation library for TypeScript that allow building strongly-typed validation rules.
 
 Installation using NPM:
 
