@@ -1,4 +1,4 @@
-export class ValidationResult {
+export default class ValidationResult {
   private errors: string[] = [];
 
   addErrors(errorMessage: string[]) {
