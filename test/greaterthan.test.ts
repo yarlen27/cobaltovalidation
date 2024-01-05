@@ -17,7 +17,7 @@ describe('ValidationRule', () => {
         const rule = new ValidationRule((p: Person) => p.age, person);
 
         // Act
-        rule.GreatherThan(30);
+        rule.GreaterThan(30);
 
         // Assert
         expect(rule.getErrors().length).toBe(1);
@@ -31,7 +31,7 @@ describe('ValidationRule', () => {
         const rule = new ValidationRule((p: Person) => p.age, person);
 
         // Act
-        rule.GreatherThan(30);
+        rule.GreaterThan(30);
 
         // Assert
         expect(rule.getErrors().length).toBe(0);
@@ -44,7 +44,7 @@ describe('ValidationRule', () => {
         const rule = new ValidationRule((p: Person) => p.age, person);
 
         // Act
-        rule.GreatherThan(30, 'Age must be greater than 30');
+        rule.GreaterThan(30, 'Age must be greater than 30');
 
         // Assert
         expect(rule.getErrors().length).toBe(1);
@@ -58,7 +58,7 @@ describe('ValidationRule', () => {
         const rule = new ValidationRule((p: Person) => p.age, person);
 
         // Act
-        rule.GreatherThan(30);
+        rule.GreaterThan(30);
 
         // Assert
         expect(rule.getErrors().length).toBe(1);

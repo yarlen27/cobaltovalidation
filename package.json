@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node dist/index.js",
-    "dev": "tsc -w & nodemon -q -w dist dist/index.js"
+    "dev": "tsc -w & nodemon -q -w dist dist/src/index.js"
   },
   "jest": {
     "preset": "ts-jest",

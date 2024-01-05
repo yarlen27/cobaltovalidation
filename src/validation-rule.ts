@@ -27,7 +27,7 @@ export class ValidationRule<T> {
     return this;
   }
 
-  GreatherThan(minValue: number, errorMessage?: string): ValidationRule<T> {
+  GreaterThan(minValue: number, errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (
       propertyValue !== undefined &&
@@ -43,12 +43,11 @@ export class ValidationRule<T> {
     return this;
   }
 
-  GreatherThanOrEquals(
+  GreaterThanOrEquals(
     minValue: number,
     errorMessage?: string
   ): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
-    console.log(propertyValue);
     if (
       propertyValue !== undefined &&
       typeof propertyValue === "number" &&
