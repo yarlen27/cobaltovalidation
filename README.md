@@ -1,11 +1,17 @@
 Simple fluent validation like library.
 A validation library for typescript that allow building strongly-typed validation rules.
 
+Installation using NPM:
+
+npm install cobaltovalidation@1.0.4    
+
 Example of use:
 
 
+
+
 ```typescript
-import {AbstractValidator} from './abstract-validator';
+import { AbstractValidator } from "cobaltovalidation";
 
 class User {    
     constructor(public name: string, public age: number) {
