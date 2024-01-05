@@ -14,7 +14,7 @@ class UserValidator extends AbstractValidator<User> {
     constructor() {
         super();        
     }
-    
+
     InitializeRules(): void {
          this.RuleFor(x => x.name).MaxLength(5);
          this.RuleFor(x => x.age).GreaterThanOrEquals(18);
@@ -32,3 +32,5 @@ user.name = 'John Doe';
 console.log('-------------------');
 result = validator.Validate(user);
 console.log(result);
+
+console.error(validator.ValidateAndThrow(user));
