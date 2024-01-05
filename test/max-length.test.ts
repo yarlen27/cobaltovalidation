@@ -2,7 +2,7 @@
 
 
 import { describe, expect, test } from '@jest/globals';
-import { ValidationRule } from '../src/validation-rule';
+import { ValidationRule } from "../src/index";
 
 export class Person {
     name: string = '';

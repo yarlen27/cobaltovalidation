@@ -1,6 +1,6 @@
 import { PropertyAccessor } from "../src/property-accessor";
 
-export class ValidationRule<T> {
+export default class ValidationRule<T> {
   private errors: string[] = [];
   constructor(
     private propertyAccessor: PropertyAccessor<T>,
