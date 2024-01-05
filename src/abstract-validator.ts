@@ -1,8 +1,8 @@
 import { PropertyAccessor } from "./property-accessor";
-import { ValidationResult } from "./validation-result";
-import { ValidationRule } from "./validation-rule";
+import  ValidationResult  from "./validation-result";
+import  ValidationRule  from "./validation-rule";
 
-export abstract class AbstractValidator<T> {
+export default abstract class AbstractValidator<T> {
   private rules: ValidationRule<T>[] = [];
 
   protected value: T = {} as T;
