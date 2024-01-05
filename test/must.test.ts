@@ -1,7 +1,7 @@
 //Must valdidation, passes the value of the specified property into a delegate that can perform custom validation logic on the value.
 
 import { describe, expect, test } from "@jest/globals";
-import { ValidationRule } from "../src/validation-rule";
+import { ValidationRule } from "../src/index";
 
 // Arrange
 export class Person {
