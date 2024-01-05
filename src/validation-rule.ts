@@ -1,6 +1,6 @@
 import { PropertyAccessor } from "../src/property-accessor";
 
-export class ValidationRule<T> {
+export default class ValidationRule<T> {
   private errors: string[] = [];
   constructor(
     private propertyAccessor: PropertyAccessor<T>,
@@ -11,10 +11,20 @@ export class ValidationRule<T> {
     this.value = value;
   }
 
+/**
+ * Retrieves the errors associated with the validation rule.
+ * 
+ * @returns An array of strings representing the errors.
+ */
   getErrors(): string[] {
     return this.errors;
   }
 
+/**
+ * Checks if the property value is not null or undefined.
+ * @param errorMessage The error message to be added to the errors array if the validation fails.
+ * @returns The current instance of the ValidationRule.
+ */
   NotNull(errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (propertyValue === null || propertyValue === undefined) {
@@ -27,6 +37,12 @@ export class ValidationRule<T> {
     return this;
   }
 
+/**
+ * Checks if the property value is greater than the specified minimum value.
+ * @param minValue The minimum value that the property value should be greater than.
+ * @param errorMessage Optional error message to be added to the errors array if the validation fails.
+ * @returns The ValidationRule instance for method chaining.
+ */
   GreaterThan(minValue: number, errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (
@@ -43,6 +59,12 @@ export class ValidationRule<T> {
     return this;
   }
 
+/**
+ * Checks if the property value is greater than or equal to the specified minimum value.
+ * @param minValue The minimum value that the property value should be greater than or equal to.
+ * @param errorMessage Optional. The error message to be added if the validation fails.
+ * @returns The ValidationRule instance for method chaining.
+ */
   GreaterThanOrEquals(
     minValue: number,
     errorMessage?: string
@@ -62,7 +84,12 @@ export class ValidationRule<T> {
     return this;
   }
 
-  //LessThan, Ensures that a particular numeric property is less than the specified value.
+/**
+ * Checks if the property value is less than the specified maximum value.
+ * @param maxValue - The maximum value that the property value should be less than.
+ * @param errorMessage - Optional. The error message to be added to the errors array if the validation fails.
+ * @returns The ValidationRule instance for method chaining.
+ */
   LessThan(maxValue: number, errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (
@@ -79,7 +106,12 @@ export class ValidationRule<T> {
     return this;
   }
 
-  //LessThanOrEquals, Ensures that a particular numeric property is less than or equal to the specified value.
+/**
+ * Checks if the property value is less than or equal to the specified maximum value.
+ * @param maxValue - The maximum value that the property value should be less than or equal to.
+ * @param errorMessage - Optional. The error message to be added if the validation fails.
+ * @returns The ValidationRule instance for method chaining.
+ */
   LessThanOrEquals(maxValue: number, errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (
@@ -96,7 +128,12 @@ export class ValidationRule<T> {
     return this;
   }
 
-  //implemente Matches for string
+/**
+ * Checks if the value of the property matches the specified regular expression.
+ * @param regex - The regular expression to match against.
+ * @param errorMessage - Optional error message to be added to the errors array if the value does not match the regex.
+ * @returns The current instance of the ValidationRule.
+ */
   Matches(regex: string, errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (
@@ -112,7 +149,14 @@ export class ValidationRule<T> {
     }
     return this;
   }
-  //implemente Length for string, Ensures that the length of a particular string property is within the specified range.
+
+/**
+ * Validates the length of a string property.
+ * @param minLength The minimum length allowed.
+ * @param maxLength The maximum length allowed.
+ * @param errorMessage An optional error message to be added to the errors array if the validation fails.
+ * @returns The ValidationRule instance for method chaining.
+ */
   Length(
     minLength: number,
     maxLength: number,
@@ -138,7 +182,12 @@ export class ValidationRule<T> {
     return this;
   }
 
-  //MinLength, Ensures that the length of a particular string property is longer than the specified value.
+/**
+ * Validates that the value of the property is a string with a minimum length.
+ * @param minLength The minimum length required for the string value.
+ * @param errorMessage Optional custom error message to be added to the errors array if the validation fails.
+ * @returns The ValidationRule instance for method chaining.
+ */
   MinLength(minLength: number, errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (
@@ -155,7 +204,12 @@ export class ValidationRule<T> {
     return this;
   }
 
-  //implement MaxLength for string
+/**
+ * Sets a maximum length validation rule for the property.
+ * @param maxLength The maximum length allowed for the property value.
+ * @param errorMessage Optional custom error message to be displayed if the validation fails.
+ * @returns The ValidationRule instance for method chaining.
+ */
   MaxLength(maxLength: number, errorMessage?: string): ValidationRule<T> {
     const propertyValue = this.propertyAccessor(this.value!);
     if (
@@ -172,7 +226,13 @@ export class ValidationRule<T> {
     return this;
   }
 
-  //Must validation, Passes the value of the specified property into a arrow function that can perform custom validation logic on the value.
+/**
+ * Adds a validation rule that checks if the specified validation function returns true for the property value.
+ * If the validation function returns false, an error message is added to the validation rule.
+ * @param validationFunction The function that performs the validation check.
+ * @param errorMessage The optional error message to be added if the validation fails.
+ * @returns The current instance of the ValidationRule.
+ */
   Must(
     validationFunction: (value: any) => boolean,
     errorMessage?: string

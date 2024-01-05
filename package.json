@@ -6,17 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node dist/index.js",
-    "dev": "tsc -w & nodemon -q -w dist dist/src/index.js"
+    "dev": "tsc -w & nodemon -q -w dist dist/index.js"
   },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "modulePathIgnorePatterns": ["<rootDir>/dist/"]
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.5",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.6",
     "jest": "^29.7.0",

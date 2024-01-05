@@ -1,7 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import { ValidationRule } from "../src/validation-rule";
-import { AbstractValidator } from "../src/abstract-validator";
-import { ValidationResult } from "../src/validation-result";
+import AbstractValidator from "../src/abstract-validator";
 
 // Arrange
 export class Person {
