@@ -1,40 +1,43 @@
 import { PropertyAccessor } from "./property-accessor";
-import { ValidationRule } from "./validation-rule"
+import { ValidationResult } from "./validation-result";
+import { ValidationRule } from "./validation-rule";
 
 export abstract class AbstractValidator<T> {
-    private rules: ValidationRule<T>[] = [];
-  
-    protected value: T = {} as T;
-    constructor() {}
-  
-    RuleFor(propertyAccessor: PropertyAccessor<T>): ValidationRule<T> {
-      const rule = new ValidationRule(propertyAccessor, this.value);
-      this.rules.push(rule);
-      return rule;
-    }
-  
-    Validate(value: T): string[] {
-      this.value = value;
-      this.rules = [];
-      this.InitializeRules();
-      let errors: string[] = [];
+  private rules: ValidationRule<T>[] = [];
 
-      for (const rule of this.rules) {
-        rule.setValue(value);
-        errors.push(... rule.getErrors());
-      }
+  protected value: T = {} as T;
+  constructor() {}
 
-      return errors;
-    }
-
-    //implement ValidateAndThrow
-    ValidateAndThrow(value: T): void {
-        const errors = this.Validate(value);
-        if (errors.length > 0) {
-            throw new Error(errors.join(','));
-        }
-    }
-
-  
-    abstract InitializeRules(): void;
+  RuleFor(propertyAccessor: PropertyAccessor<T>): ValidationRule<T> {
+    const rule = new ValidationRule(propertyAccessor, this.value);
+    this.rules.push(rule);
+    return rule;
   }
+
+  Validate(value: T): ValidationResult {
+    this.value = value;
+    this.rules = [];
+    this.InitializeRules();
+    let errors: string[] = [];
+
+    for (const rule of this.rules) {
+      rule.setValue(value);
+      errors.push(...rule.getErrors());
+    }
+
+    const validationResult = new ValidationResult();
+    validationResult.addErrors(errors);
+
+    return validationResult;
+  }
+
+  //implement ValidateAndThrow
+  ValidateAndThrow(value: T): void {
+    const validationResult = this.Validate(value);
+    if (validationResult.getErrors().length > 0) {
+      throw new Error(validationResult.getErrors().join(","));
+    }
+  }
+
+  abstract InitializeRules(): void;
+}
