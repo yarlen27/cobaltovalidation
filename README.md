@@ -32,4 +32,9 @@ const user = new User('John', 17);
 const validator = new UserValidator();
 let result = validator.Validate(user);
 ```
-  
+Returns the list of errors.
+
+Also can use ValidateAndThrow
+```typescript
+validator.ValidateAndThrow(user);
+```
