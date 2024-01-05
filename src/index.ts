@@ -27,10 +27,12 @@ const user = new User('John', 17);
 const validator = new UserValidator();
 let result = validator.Validate(user);
 console.log(result);
+console.log(result.isValid);
+console.log(result.getErrors());
 user.age = 19;
 user.name = 'John Doe';
 console.log('-------------------');
 result = validator.Validate(user);
-console.log(result);
+console.log(result.isValid);
 
 console.error(validator.ValidateAndThrow(user));
