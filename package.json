@@ -1,6 +1,6 @@
 {
   "name": "cobaltovalidation",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Simple fluent validation like library",
   "main": "index.js",
   "scripts": {
