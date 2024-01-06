@@ -4,7 +4,7 @@
   "description": "Simple fluent validation like library",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "build": "tsup"
   },
   "keywords": [],
