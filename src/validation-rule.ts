@@ -192,4 +192,30 @@ export default class ValidationRule<T> {
     }
     return this;
   }
+
+  //Equal validation, Ensures that a particular property is equal to the specified value.
+  Equal(value: any, errorMessage?: string): ValidationRule<T> {
+    const propertyValue = this.propertyAccessor(this.value!);
+    if (propertyValue !== undefined && propertyValue !== value) {
+      if (errorMessage !== undefined) {
+        this.errors.push(errorMessage);
+      } else {
+        this.errors.push(`Must be equal to ${value}`);
+      }
+    }
+    return this;
+  }
+
+  //NotEqual validation, Ensures that a particular property is not equal to the specified value.
+  NotEqual(value: any, errorMessage?: string): ValidationRule<T> {
+    const propertyValue = this.propertyAccessor(this.value!);
+    if (propertyValue !== undefined && propertyValue === value) {
+      if (errorMessage !== undefined) {
+        this.errors.push(errorMessage);
+      } else {
+        this.errors.push(`Must not be equal to ${value}`);
+      }
+    }
+    return this;
+  }
 }
